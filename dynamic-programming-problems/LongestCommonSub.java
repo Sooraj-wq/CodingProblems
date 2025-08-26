@@ -16,20 +16,13 @@ public class LongestCommonSub {
         }
 
         for(int i=1;i<=m;i++){
-
             for(int j=1;j<=n;j++){
-
                 if(str1.charAt(i-1)==str2.charAt(j-1)){
-
                     dp[i][j]=1+dp[i-1][j-1];
-
                 }else{
-
                     dp[i][j]=Math.max(dp[i-1][j],dp[i][j-1]);
                 }
-
                 if(dp[i][j]>max){
-
                     max=dp[i][j];
                 }
             }
@@ -41,6 +34,40 @@ public class LongestCommonSub {
 
         String str1 = "abcde";
         String str2 = "ace";
+        System.out.println(LCS(str1,str2));
+        
+    }
+}
+
+//1D solution to the problem!
+
+public class Main {
+
+
+    static int LCS(String str1, String str2){
+
+        int m = str1.length();
+        int n = str2.length();
+        int[] dp = new int[n+1];
+
+
+        dp[0] = 0;
+
+        for(int i=1;i<=m;i++){
+            for(int j=1;j<=n;j++){
+                if(str2.charAt(j-1)==str1.charAt(i-1)){
+                    dp[j] = dp[j-1]+1;
+                }else{
+                    dp[j] = Math.max(dp[j-1],dp[j]);
+                }
+            }
+        }
+        return dp[n];
+    }
+
+    public static void main(String[] args) {
+        String str1 = "AGGTAB";
+        String str2 = "GXTXAYB";
         System.out.println(LCS(str1,str2));
         
     }
